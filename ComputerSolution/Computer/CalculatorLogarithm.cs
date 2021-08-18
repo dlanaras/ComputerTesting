@@ -1,15 +1,24 @@
-//IMPORTANT: log uses base and result to get exponentusing System;
+//IMPORTANT: log uses base and result to get exponent
 using System;
 
 namespace Computer
 {
     public class CalculatorLogarithm
     {
-        public double Multiply(double factor, double multiplicand)
+        public double LogWithBaseAndRadicand(double logBase, double logRadicand)
         {
-            if (Double.IsFinite(factor * multiplicand))
+            if (Double.IsFinite(logBase) && Double.IsFinite(logRadicand))
             {
-                return factor * multiplicand;
+                // logExponent = how many times logBase times itself = logRadicand
+                double LogExponent = 0;
+
+                while(!logBase.Equals(Math.Abs(logRadicand)))
+                {
+                    LogExponent++;
+                    logBase *= logBase;
+                }
+                
+                return LogExponent;
             }
             else
             {
