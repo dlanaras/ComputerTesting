@@ -1,4 +1,4 @@
-./ComputerSolution/Computer/obj
-./ComputerSolution/Computer/bin/Debug/net5.0
-./ComputerSolution/Computer.Tests/bin
-./ComputerSolution/Computer.Tests/obj
+/ComputerSolution/Computer/obj
+/ComputerSolution/Computer/bin/Debug/net5.0
+/ComputerSolution/Computer.Tests/bin
+/ComputerSolution/Computer.Tests/obj
