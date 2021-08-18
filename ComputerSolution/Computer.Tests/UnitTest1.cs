@@ -15,6 +15,9 @@ namespace Computer.Tests
 
         readonly CalculatorRoot calcRoot = new CalculatorRoot();
 
+        readonly CalculatorExponentiation calcExponent = new CalculatorExponentiation();
+
+        readonly CalculatorLogarithm calcLog = new CalculatorLogarithm();
 
 
         [Theory]
@@ -102,7 +105,6 @@ namespace Computer.Tests
             Assert.Throws<ArithmeticException>(() => calcDivision.Divide(dividend, divisor));
         }
 
-
         [Theory]
         [InlineData(1.5, 0)]
         public void ThrowExceptionWhenDividingByZero(double dividend, double divisor)
@@ -110,8 +112,10 @@ namespace Computer.Tests
             Assert.Throws<DivideByZeroException>(() => calcDivision.Divide(dividend, divisor));
         }
 
+
+
         [Theory]
-        [InlineData(69, 0)]
+        [InlineData(0, 69)]
         public void ThrowExceptionWhenDegreeOfRootIsZero(double degree, double radicand)
         {
             Assert.Throws<DivideByZeroException>(() => calcRoot.GetRootWithDegreeOfRadicand(degree, radicand));
@@ -124,6 +128,48 @@ namespace Computer.Tests
             Assert.True(isRootMethodEqualToRealResult, $"Actual Value is: {calcRoot.GetRootWithDegreeOfRadicand(3, 25)}");
         }
 
-        //TODO: Block usage of - base 
+        [Theory]
+        [InlineData(double.PositiveInfinity, double.PositiveInfinity)]
+        public void ThrowExceptionWhenRootResultIsInfinite(double degree, double radicand)
+        {
+            Assert.Throws<ArithmeticException>(() => calcRoot.GetRootWithDegreeOfRadicand(degree, radicand));
+        }
+
+
+
+        [Theory]
+        [InlineData(1234)]
+        [InlineData(-1234)]
+        [InlineData(12.34)]
+        [InlineData(-12.34)]
+        public void ExponentZeroAlwaysResultsToOne(double baseNum)
+        {
+            Assert.True(calcExponent.GetPowerOfBaseToExponent(baseNum, 0).Equals(1));
+        }
+
+
+        [Theory]
+        [InlineData(3, 5)]
+        [InlineData(1.213, 12346)]
+        public void ExponentiationWorksWithNormalNums(double baseNum, double exponent)
+        {
+            Assert.True(calcExponent.GetPowerOfBaseToExponent(baseNum, exponent).Equals(Math.Pow(baseNum, exponent)), $"Actual: {calcExponent.GetPowerOfBaseToExponent(baseNum, exponent)} Expected: {Math.Pow(baseNum, exponent)}");
+        }
+
+        [Fact]
+        public void MinusExponentsAndBasesAreDisabledSinceTheyCannotBeComparedToMathPow()
+        {
+            Assert.Throws<ArithmeticException>(() => calcExponent.GetPowerOfBaseToExponent(-5, -5));
+        }
+
+
+        [Theory]
+        [InlineData(2, 10)]
+        [InlineData(3, -10)]
+        public void LogWorksOnIntegers(double logBase, double logRadicand) //FIXME:
+        {
+            double calcLogResult = calcLog.LogWithBaseAndRadicand(logBase, logRadicand);
+            Assert.True(calcLogResult.Equals(Math.Log(logBase, logRadicand)), $"Actual result: {calcLogResult}, Expected result: {Math.Log(logBase, logRadicand)}");
+        }
     }
 }

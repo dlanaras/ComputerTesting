@@ -17,8 +17,7 @@ namespace Computer
             else
             {
                 double aproximateBase = Math.Pow(radicand, 1 / degree); //Really cool conversion from https://stackoverflow.com/questions/18657508/c-sharp-find-nth-root
-
-                if (Double.IsFinite(aproximateBase))
+                if (!Double.IsInfinity(radicand) || !Double.IsInfinity(degree))
                 {
                     return aproximateBase;
                 }

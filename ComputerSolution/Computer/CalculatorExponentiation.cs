@@ -13,8 +13,8 @@ namespace Computer
                 {
                     power *= baseNum;
                 }
-
-                if (Double.IsFinite(power))
+                bool baseAndExponentarentNegativeAndAreFinite = Double.IsFinite(power) && baseNum > 0 && exponent > 0;
+                if (baseAndExponentarentNegativeAndAreFinite)
                 {
                     return power;
                 }
