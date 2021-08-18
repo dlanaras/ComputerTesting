@@ -35,6 +35,5 @@ namespace Computer
         }
 
         //TODO: Handle Exception with try and catch
-        //TODO: add class for convertion to double from string
     }
 }

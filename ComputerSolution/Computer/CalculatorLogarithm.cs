@@ -1,4 +1,3 @@
-//IMPORTANT: log uses base and result to get exponent
 using System;
 
 namespace Computer
@@ -12,7 +11,7 @@ namespace Computer
                 // logExponent = how many times logBase times itself = logRadicand
                 double LogExponent = 0;
 
-                while(!logBase.Equals(Math.Abs(logRadicand)))
+                while(!logBase.Equals(logRadicand)) //FIXME:
                 {
                     LogExponent++;
                     logBase *= logBase;
