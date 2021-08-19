@@ -4,7 +4,7 @@ namespace Computer
 {
     public class CalculatorLogarithm
     {
-        public double LogWithBaseAndRadicand(double logBase, double logRadicand)
+        public static double LogWithBaseAndRadicand(double logBase, double logRadicand)
         {
             if (Double.IsFinite(logBase) && Double.IsFinite(logRadicand))
             {
@@ -21,7 +21,7 @@ namespace Computer
             }
             else
             {
-                throw new ArithmeticException();
+                throw new OverflowException();
             }
         }
     }

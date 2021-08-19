@@ -4,7 +4,7 @@ namespace Computer
 {
     public class CalculatorDivision
     {
-        public double Divide(double dividend, double divisor)
+        public static double Divide(double dividend, double divisor)
         {
             if (!divisor.Equals(0))
             {
@@ -14,7 +14,7 @@ namespace Computer
                 }
                 else
                 {
-                    throw new ArithmeticException();
+                    throw new OverflowException();
                 }
             }
             else

@@ -4,11 +4,11 @@ namespace Computer
 {
     public class CalculatorAddition
     {
-        public double Add(double summand, double addend)
+        public static double Add(double summand, double addend)
         {
             if (Double.IsInfinity(addend + summand))
             {
-                throw new ArithmeticException();
+                throw new OverflowException();
             }
             else
             {

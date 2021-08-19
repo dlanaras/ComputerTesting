@@ -4,10 +4,7 @@ namespace Computer
 {
     public class CalculatorRoot
     {
-
-        private CalculatorExponentiation calcExponent = new CalculatorExponentiation();
-
-        public double GetRootWithDegreeOfRadicand(double degree, double radicand)
+        public static double GetRootWithDegreeOfRadicand(double degree, double radicand)
         {
 
             if (degree.Equals(0))
@@ -23,7 +20,7 @@ namespace Computer
                 }
                 else
                 {
-                    throw new ArithmeticException();
+                    throw new OverflowException();
                 }
             }
 

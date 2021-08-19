@@ -4,7 +4,7 @@ namespace Computer
 {
     public class CalculatorSubtraction
     {
-        public double Subtract(double minuend, double subtrahend)
+        public static double Subtract(double minuend, double subtrahend)
         {
             double difference = minuend - subtrahend;
             if (!Double.IsInfinity(difference))
@@ -13,7 +13,7 @@ namespace Computer
             }
             else
             {
-                throw new ArithmeticException();
+                throw new OverflowException();
             }
         }
     }

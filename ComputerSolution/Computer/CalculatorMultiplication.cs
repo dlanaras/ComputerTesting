@@ -4,7 +4,7 @@ namespace Computer
 {
     public class CalculatorMultiplication
     {
-        public double Multiply(double factor, double multiplicand)
+        public static double Multiply(double factor, double multiplicand)
         {
             if (Double.IsFinite(factor * multiplicand))
             {
@@ -12,7 +12,7 @@ namespace Computer
             }
             else
             {
-                throw new ArithmeticException();
+                throw new OverflowException();
             }
         }
     }
