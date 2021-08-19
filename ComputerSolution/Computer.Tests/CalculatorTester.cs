@@ -1,6 +1,9 @@
 using System;
 using Xunit;
+using System.Collections.Generic;
 
+
+//TODO: Seperate this in multiple classes depending on which class is being tested
 namespace Computer.Tests
 {
     public class CalculatorTester
@@ -170,6 +173,22 @@ namespace Computer.Tests
         {
             double calcLogResult = calcLog.LogWithBaseAndRadicand(logBase, logRadicand);
             Assert.True(calcLogResult.Equals(Math.Log(logBase, logRadicand)), $"Actual result: {calcLogResult}, Expected result: {Math.Log(logBase, logRadicand)}");
+        }
+
+
+        [Fact]
+        public void UserCannotChooseInvalidOperation()
+        {
+            Assert.Throws<InvalidOperationException>(() => CalculatorInputToOperationsConvertor.ReturnUserInputAsOperation("planet"));
+        }
+
+        [Theory]
+        [InlineData("Add")]
+        [InlineData("ADD")]
+        [InlineData("add")]
+        public void OperationGetsChosenRegardlessOfCapitalization(string operation)
+        {
+            Assert.True(CalculatorInputToOperationsConvertor.ReturnUserInputAsOperation(operation).Equals(CalculatorOperations.Add));
         }
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace Computer
 {
-    public enum CalculatorOptions
+    public enum CalculatorOperations
     {
         Add,
         Subtract,
