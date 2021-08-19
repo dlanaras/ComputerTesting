@@ -21,10 +21,11 @@ namespace Computer.Tests
         [InlineData(3, 5)]
         [InlineData(1213, 3)]
 
-        //IMPORTANT: Add Math.Round so that not 100% accurate decimal numbers can be compared
         public void ExponentiationWorksWithNormalNums(double baseNum, double exponent)
         {
-            Assert.True(CalculatorExponentiation.GetPowerOfBaseToExponent(baseNum, exponent).Equals(Math.Pow(baseNum, exponent)), $"Actual: {CalculatorExponentiation.GetPowerOfBaseToExponent(baseNum, exponent)} Expected: {Math.Pow(baseNum, exponent)}");
+            double exponentResult =  Math.Round(CalculatorExponentiation.GetPowerOfBaseToExponent(baseNum, exponent), 6);
+            double expectedResult = Math.Round(Math.Pow(baseNum, exponent), 6);
+            Assert.True(exponentResult.Equals(expectedResult), $"Actual: {exponentResult} Expected: {expectedResult}");
         }
 
         [Fact]

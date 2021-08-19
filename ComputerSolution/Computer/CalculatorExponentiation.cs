@@ -15,14 +15,20 @@ namespace Computer
                     power *= baseNum;
                 }
 
-                if (baseAndExponentArentNegativeAndAreFinite)
+                if (baseNum < 0 || exponent < 0)
+                {
+                    throw new NumberCannotBeNegativeException();
+                }
+                else if (Double.IsFinite(power))
                 {
                     return power;
+
                 }
                 else
                 {
                     throw new OverflowException();
                 }
+
             }
             else
             {

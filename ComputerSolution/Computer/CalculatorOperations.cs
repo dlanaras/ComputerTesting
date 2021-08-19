@@ -10,6 +10,7 @@ namespace Computer
         Divide,
         Root,
         Exponent,
-        Logarithm
+        Logarithm,
+        Factorial
     }
 }

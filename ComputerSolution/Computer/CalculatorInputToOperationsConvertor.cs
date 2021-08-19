@@ -37,6 +37,10 @@ namespace Computer
             {
                 return CalculatorOperations.Logarithm;
             }
+            else if (userChosenOperationNoCaps.Equals("factorial"))
+            {
+                return CalculatorOperations.Factorial;
+            }
             else
             {
                 throw new InvalidOperationException();

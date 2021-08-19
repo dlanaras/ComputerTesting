@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 
+
 namespace Computer
 {
     public class Calculator
@@ -87,6 +88,9 @@ namespace Computer
                     case CalculatorOperations.Logarithm:
                         this.LogarithmExceptionHandling();
                         break;
+                    case CalculatorOperations.Factorial:
+                        this.FactorialExceptionHandling();
+                        break;
                     default:
                         throw new Exception("CalcOps should be defined");
                 }
@@ -98,6 +102,30 @@ namespace Computer
             this.TurnCalculatorOff();
         }
 
+
+        private void FactorialExceptionHandling()
+        {
+            try
+            {
+                this.setUserNums("factorial");
+                this.Result = CalculatorFactorial.GetFactorialOf(this.FirstNum);
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("The number you entered is too large\n");
+                this.FactorialExceptionHandling();
+            }
+            catch (NumberCannotBeDecimalException)
+            {
+                Console.WriteLine("Factorials with decimal points are not supported, please reffer to Gamma Function online\n");
+                this.FactorialExceptionHandling();
+            }
+            catch (NumberCannotBeNegativeException)
+            {
+                Console.WriteLine("Negative numbers are not supported\n");
+                this.FactorialExceptionHandling();
+            }
+        }
         private void ExponentExceptionHandling()
         {
             try
@@ -108,6 +136,11 @@ namespace Computer
             catch (OverflowException)
             {
                 Console.WriteLine("The numbers you entered are too large or have to many decimal places\n");
+                this.ExponentExceptionHandling();
+            }
+            catch (NumberCannotBeNegativeException)
+            {
+                Console.WriteLine("Negative Exponents are unsupported");
                 this.ExponentExceptionHandling();
             }
         }
@@ -126,7 +159,7 @@ namespace Computer
             }
             catch (DivideByZeroException)
             {
-                Console.WriteLine("Degree cannot be 0, because dividing by 0 is not possible.\n");
+                Console.WriteLine("Degree cannot be 0, because dividing by 0 is not possible\n");
                 this.RootExceptionHandling();
             }
         }
@@ -247,6 +280,20 @@ namespace Computer
             }
         }
 
+        private void setUserNums(string numMathName)
+        {
+            string stringToConvertToDouble = this.getUserStringToConvertToDouble(numMathName);
+            try
+            {
+                this.FirstNum = CalculatorStringToDoubleConvertor.StringToDouble(stringToConvertToDouble);
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("That's not a valid number. Try again.\n");
+                this.setUserNums(numMathName);
+            }
+        }
+
         private string getUserStringToConvertToDouble(string mathematicalNumName)
         {
             Console.WriteLine($"Enter a {mathematicalNumName}: ");
@@ -270,7 +317,7 @@ namespace Computer
 
         private string AskUserWhichOperation()
         {
-            Console.WriteLine("Choose an Operation:\n Add, Subtract, Multiply, Divide, Exponent, Root, Log");
+            Console.WriteLine("Choose an Operation:\n Add, Subtract, Multiply, Divide, Exponent, Root, Log, Factorial");
             return Console.ReadLine();
         }
 
