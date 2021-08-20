@@ -173,7 +173,12 @@ namespace Computer
             }
             catch (OverflowException)
             {
-                Console.WriteLine("The numbers you entered are too large or have to many decimal places\n");
+                Console.WriteLine("The numbers you entered are too large, have to many decimal places or are just dont result in a non decimal exponent\n");
+                this.LogarithmExceptionHandling();
+            }
+            catch (NumberCannotBeNegativeException)
+            {
+                Console.WriteLine("Negative Numbers aren't supported\n");
                 this.LogarithmExceptionHandling();
             }
 
