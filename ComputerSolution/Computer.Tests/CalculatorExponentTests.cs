@@ -31,7 +31,7 @@ namespace Computer.Tests
         [Fact]
         public void MinusExponentsAndBasesAreDisabledSinceTheyCannotBeComparedToMathPow()
         {
-            Assert.Throws<OverflowException>(() => CalculatorExponentiation.GetPowerOfBaseToExponent(-5, -5));
+            Assert.Throws<NumberCannotBeNegativeException>(() => CalculatorExponentiation.GetPowerOfBaseToExponent(-5, -5));
         }
 
         [Fact]
